@@ -879,6 +879,241 @@
         .meta-box h4 { font-size: 0.72rem; color: var(--green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; }
         .meta-box p { font-size: 0.9rem; color: var(--text); }
 
+        /* ── EXPERIENCE TIMELINE ── */
+        #experience {
+            padding: 6rem 5%;
+            background: var(--bg);
+        }
+        .exp-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .exp-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 4rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .exp-counter {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(168,224,99,0.08);
+            border: 1px solid rgba(168,224,99,0.2);
+            padding: 0.6rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            color: var(--green);
+            font-weight: 600;
+        }
+        .exp-counter span {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        /* Timeline wrapper */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        /* Vertical line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--green) 0%, rgba(168,224,99,0.1) 100%);
+        }
+
+        /* Each timeline item */
+        .tl-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .tl-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .tl-item:last-child { margin-bottom: 0; }
+
+        /* Dot on the line */
+        .tl-dot {
+            position: absolute;
+            left: -2.85rem;
+            top: 1.5rem;
+            width: 20px;
+            height: 20px;
+            background: var(--green);
+            border-radius: 50%;
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 3px rgba(168,224,99,0.25), 0 0 16px rgba(168,224,99,0.4);
+            z-index: 1;
+            flex-shrink: 0;
+        }
+        /* Pulse animation on active dot */
+        .tl-dot.active-dot::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            border: 2px solid var(--green);
+            animation: ripple 1.8s ease-out infinite;
+        }
+        @keyframes ripple {
+            0% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 0; transform: scale(2); }
+        }
+
+        /* Card */
+        .tl-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem 2rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .tl-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--green);
+            border-radius: 3px 0 0 3px;
+        }
+        .tl-card:hover {
+            border-color: rgba(168,224,99,0.35);
+            transform: translateX(6px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Card top row */
+        .tl-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .tl-company {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.2;
+        }
+        .tl-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: rgba(168,224,99,0.12);
+            border: 1px solid rgba(168,224,99,0.25);
+            color: var(--green);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 0.3rem 0.85rem;
+            border-radius: 50px;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+        .tl-badge.ongoing {
+            background: rgba(168,224,99,0.18);
+            animation: badge-pulse 2s ease-in-out infinite;
+        }
+        @keyframes badge-pulse {
+            0%,100% { box-shadow: 0 0 0 0 rgba(168,224,99,0.3); }
+            50% { box-shadow: 0 0 0 5px rgba(168,224,99,0); }
+        }
+
+        .tl-role {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--green);
+            margin-bottom: 0.4rem;
+        }
+        .tl-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+        .tl-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.82rem;
+            color: var(--gray);
+        }
+        .tl-meta-item svg {
+            width: 13px; height: 13px;
+            fill: none; stroke: var(--gray);
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        /* Divider */
+        .tl-divider {
+            height: 1px;
+            background: var(--border);
+            margin-bottom: 1.25rem;
+        }
+
+        /* Highlights list */
+        .tl-highlights {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .tl-highlights li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 0.875rem;
+            color: var(--text);
+            line-height: 1.65;
+        }
+        .tl-highlights li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 0.5rem;
+        }
+
+        /* Tags row at bottom */
+        .tl-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+        .tl-tag {
+            font-size: 0.72rem;
+            background: rgba(168,224,99,0.06);
+            border: 1px solid rgba(168,224,99,0.15);
+            color: var(--green);
+            padding: 0.25rem 0.7rem;
+            border-radius: 50px;
+        }
+
         /* ── SCROLL ANIMATE ── */
         .fade-up {
             opacity: 0;
@@ -916,6 +1151,7 @@
     <ul>
         <li><a href="#home" class="nav-link active">Home</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
         <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
@@ -1071,6 +1307,104 @@
     </div>
 </section>
 
+<!-- EXPERIENCE -->
+<section id="experience">
+    <div class="exp-inner">
+        <div class="exp-header fade-up">
+            <div>
+                <div class="section-label">Work Experience</div>
+                <h2 class="section-title">My <em>Professional</em> Journey</h2>
+            </div>
+            <div class="exp-counter">
+                <span>2</span> Internship Experiences
+            </div>
+        </div>
+
+        <div class="timeline">
+
+            <!-- ITEM 1 — PT Iljin (ongoing, shown first) -->
+            <div class="tl-item">
+                <div class="tl-dot active-dot"></div>
+                <div class="tl-card">
+                    <div class="tl-top">
+                        <div class="tl-company">PT Iljin New Technology Steel</div>
+                        <div class="tl-badge ongoing">
+                            <span style="width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block;"></span>
+                            Currently Active
+                        </div>
+                    </div>
+                    <div class="tl-role">PPIC Intern</div>
+                    <div class="tl-meta">
+                        <div class="tl-meta-item">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            January 2026 – Present
+                        </div>
+                        <div class="tl-meta-item">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Manufacturing Industry
+                        </div>
+                    </div>
+                    <div class="tl-divider"></div>
+                    <ul class="tl-highlights">
+                        <li>Handled production planning and inventory control activities to support operational efficiency and material availability.</li>
+                        <li>Performed machine capacity calculations and supported the preparation of Master Production Schedule (MPS), Bill of Materials (BOM), and Material Requirements Planning (MRP).</li>
+                        <li>Supported production scheduling to ensure production activities aligned with demand and operational targets.</li>
+                        <li>Monitored and controlled the flow of incoming and outgoing materials/goods to maintain inventory accuracy and production continuity.</li>
+                        <li>Learned and applied PPIC processes related to supply chain coordination, production planning, and inventory management in the manufacturing industry.</li>
+                    </ul>
+                    <div class="tl-tags">
+                        <span class="tl-tag">PPIC</span>
+                        <span class="tl-tag">MPS</span>
+                        <span class="tl-tag">BOM</span>
+                        <span class="tl-tag">MRP</span>
+                        <span class="tl-tag">Inventory Control</span>
+                        <span class="tl-tag">Production Planning</span>
+                        <span class="tl-tag">Supply Chain</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ITEM 2 — PT Pertamina Lubricants -->
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-card">
+                    <div class="tl-top">
+                        <div class="tl-company">PT Pertamina Lubricants</div>
+                        <div class="tl-badge">Completed</div>
+                    </div>
+                    <div class="tl-role">Supply & Distribution Intern — Gudang Nusantara DSP Plumpang</div>
+                    <div class="tl-meta">
+                        <div class="tl-meta-item">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            December 2025 – January 2026
+                        </div>
+                        <div class="tl-meta-item">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Plumpang, Jakarta
+                        </div>
+                    </div>
+                    <div class="tl-divider"></div>
+                    <ul class="tl-highlights">
+                        <li>Learned end-to-end supply and distribution flows, including inbound and outbound processes to domestic and international distribution points.</li>
+                        <li>Supported administrative activities for inbound and outbound logistics operations.</li>
+                        <li>Assisted in inventory control, including stock opname, cycle count, and inventory management.</li>
+                        <li>Observed distribution planning and allocation across 7 Sales Regions (SR).</li>
+                    </ul>
+                    <div class="tl-tags">
+                        <span class="tl-tag">Supply Chain</span>
+                        <span class="tl-tag">Distribution</span>
+                        <span class="tl-tag">Logistics</span>
+                        <span class="tl-tag">Inventory Control</span>
+                        <span class="tl-tag">Stock Opname</span>
+                        <span class="tl-tag">Inbound & Outbound</span>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /timeline -->
+    </div>
+</section>
+
 <!-- PORTFOLIO -->
 <section id="portfolio">
     <div class="portfolio-inner">
@@ -1080,15 +1414,83 @@
                 <h2 class="section-title" style="margin-bottom:0">My <em>Portfolio</em></h2>
             </div>
             <div class="tab-pills">
-                <button class="tab-pill active" onclick="switchTab('projects', this)">Projects & Tasks</button>
+                <button class="tab-pill active" onclick="switchTab('experience-tab', this)">Experience</button>
+                <button class="tab-pill" onclick="switchTab('projects', this)">Projects & Tasks</button>
                 <button class="tab-pill" onclick="switchTab('certificates', this)">Certificates</button>
                 <button class="tab-pill" onclick="switchTab('techstack', this)">Tech Stack</button>
                 <button class="tab-pill" onclick="switchTab('cv', this)">Curriculum Vitae</button>
             </div>
         </div>
 
+        <!-- EXPERIENCE TAB -->
+        <div id="experience-tab" class="tab-content active">
+            <div class="timeline">
+                <div class="tl-item visible">
+                    <div class="tl-dot active-dot"></div>
+                    <div class="tl-card">
+                        <div class="tl-top">
+                            <div class="tl-company">PT Iljin New Technology Steel</div>
+                            <div class="tl-badge ongoing"><span style="width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block;"></span> Currently Active</div>
+                        </div>
+                        <div class="tl-role">PPIC Intern</div>
+                        <div class="tl-meta">
+                            <div class="tl-meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gray)" stroke-width="2" width="13" height="13"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                January 2026 – Present
+                            </div>
+                            <div class="tl-meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gray)" stroke-width="2" width="13" height="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                Manufacturing Industry
+                            </div>
+                        </div>
+                        <div class="tl-divider"></div>
+                        <ul class="tl-highlights">
+                            <li>Handled production planning and inventory control activities to support operational efficiency and material availability.</li>
+                            <li>Performed machine capacity calculations and supported the preparation of Master Production Schedule (MPS), Bill of Materials (BOM), and Material Requirements Planning (MRP).</li>
+                            <li>Supported production scheduling to ensure production activities aligned with demand and operational targets.</li>
+                            <li>Monitored and controlled the flow of incoming and outgoing materials to maintain inventory accuracy and production continuity.</li>
+                            <li>Learned and applied PPIC processes related to supply chain coordination, production planning, and inventory management in the manufacturing industry.</li>
+                        </ul>
+                        <div class="tl-tags">
+                            <span class="tl-tag">PPIC</span><span class="tl-tag">MPS</span><span class="tl-tag">BOM</span><span class="tl-tag">MRP</span><span class="tl-tag">Inventory Control</span><span class="tl-tag">Production Planning</span><span class="tl-tag">Supply Chain</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tl-item visible">
+                    <div class="tl-dot"></div>
+                    <div class="tl-card">
+                        <div class="tl-top">
+                            <div class="tl-company">PT Pertamina Lubricants</div>
+                            <div class="tl-badge">Completed</div>
+                        </div>
+                        <div class="tl-role">Supply & Distribution Intern — Gudang Nusantara DSP Plumpang</div>
+                        <div class="tl-meta">
+                            <div class="tl-meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gray)" stroke-width="2" width="13" height="13"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                December 2025 – January 2026
+                            </div>
+                            <div class="tl-meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gray)" stroke-width="2" width="13" height="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                Plumpang, Jakarta
+                            </div>
+                        </div>
+                        <div class="tl-divider"></div>
+                        <ul class="tl-highlights">
+                            <li>Learned end-to-end supply and distribution flows, including inbound and outbound processes to domestic and international distribution points.</li>
+                            <li>Supported administrative activities for inbound and outbound logistics operations.</li>
+                            <li>Assisted in inventory control, including stock opname, cycle count, and inventory management.</li>
+                            <li>Observed distribution planning and allocation across 7 Sales Regions (SR).</li>
+                        </ul>
+                        <div class="tl-tags">
+                            <span class="tl-tag">Supply Chain</span><span class="tl-tag">Distribution</span><span class="tl-tag">Logistics</span><span class="tl-tag">Inventory Control</span><span class="tl-tag">Stock Opname</span><span class="tl-tag">Inbound & Outbound</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- PROJECTS -->
-        <div id="projects" class="tab-content active">
+        <div id="projects" class="tab-content">
             <div class="projects-grid">
                 <div class="project-card show">
                     <div class="card-thumb">
@@ -1505,6 +1907,16 @@
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Timeline items scroll animation (standalone section)
+    const tlObserver = new IntersectionObserver(entries => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+                setTimeout(() => e.target.classList.add('visible'), 150);
+            }
+        });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('#experience .tl-item').forEach(el => tlObserver.observe(el));
 
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
